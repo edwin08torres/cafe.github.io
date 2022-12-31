@@ -118,6 +118,9 @@ h6 {
     position: absolute;
     top: 50px;
     left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
 }
 
 .mobile-menu a {
@@ -157,6 +160,9 @@ h6 {
     box-sizing: border-box;
     position: absolute;
     right: 0;
+    background-color: #fff;
+    margin-right: 3%;
+    box-shadow: 20px 20px 20px rgba(209, 205, 205, 0.876);
 }
 
 .title-container {
@@ -179,7 +185,7 @@ h6 {
     grid-template-columns: auto 1fr;
     gap: 16px;
     align-items: center;
-    background-color: var(--text-input-field);
+    background-color: #F7F7F7;
     margin-bottom: 24px;
     border-radius: 8px;
     padding: 0 24px;
@@ -209,6 +215,7 @@ h6 {
 }
 
 .shopping-cart figure {
+    /* border: 2px solid red; */
     margin: 0;
 }
 
@@ -230,15 +237,17 @@ h6 {
 }
 
 .primary-button {
-    background-color: var(--hospital-green);
+    background-color: #8ff7c3;
+    /* margin:5%; */
     border-radius: 8px;
     border: none;
-    color: var(--white);
+    color: #000;
     width: 100%;
     cursor: pointer;
-    font-size: var(--md);
+    font-size: 14px;
     font-weight: bold;
     height: 50px;
+    /* box-shadow: 15px 20px 20px rgba(209, 205, 205, 0.876); */
 }
 
 .cards-container {

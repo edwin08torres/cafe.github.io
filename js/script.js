@@ -5,11 +5,13 @@ const mobileMenu = document.querySelector(".mobile-menu");
 const shoppingCar = document.querySelector(".navbar-shopping-car");
 const aside = document.querySelector(".product-detail");
 const cardsContainer = document.querySelector(".cards-container");
-
+const productCard = document.querySelector(".product-card");
+const productInfo =  document.querySelector('.product-info-detail');
 
 menuEmail.addEventListener("click", toggleMenuDesktop);
 HamburgerMenu.addEventListener("click", toggleMobileMenu);
 shoppingCar.addEventListener("click", toggleCarMenu);
+// productInfo.addEventListener("click", toggleInfoProduct);
 
 // función de min-aside de login,etc
 function toggleMenuDesktop() {
@@ -53,6 +55,11 @@ function toggleCarMenu() {
 
   aside.classList.toggle("isactive");
 }
+
+// function toggleInfoProduct(){
+
+// productInfo.classList.add("isactive");
+// }
 
 const productList = [];
 productList.push({
