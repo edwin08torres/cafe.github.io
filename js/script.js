@@ -6,12 +6,14 @@ const shoppingCar = document.querySelector(".navbar-shopping-car");
 const aside = document.querySelector(".product-detail");
 const cardsContainer = document.querySelector(".cards-container");
 const productCard = document.querySelector(".product-card");
-const productInfo =  document.querySelector('.product-info-detail');
+const productInfo = document.querySelector(".product-info-detail");
+const productInfoClose = document.querySelector(".product-detail-close");
+const productInfoDetail = document.querySelector(".product-info-detail");
 
 menuEmail.addEventListener("click", toggleMenuDesktop);
 HamburgerMenu.addEventListener("click", toggleMobileMenu);
 shoppingCar.addEventListener("click", toggleCarMenu);
-// productInfo.addEventListener("click", toggleInfoProduct);
+// productInfoClose.addEventListener("click", closeInfoProduct);
 
 // función de min-aside de login,etc
 function toggleMenuDesktop() {
@@ -21,6 +23,7 @@ function toggleMenuDesktop() {
     aside.classList.add("isactive");
   }
 
+  productInfo.classList.add("isactive");
   desktopMenu.classList.toggle("isactive");
 }
 
@@ -32,6 +35,7 @@ function toggleMobileMenu() {
     aside.classList.add("isactive");
   }
 
+  productInfo.classList.add("isactive");
   mobileMenu.classList.toggle("isactiveM");
 }
 
@@ -52,31 +56,38 @@ function toggleCarMenu() {
   // de ClassList que es el 'add', lo cual este agrega una clase a este elemento, y la clase que agrega es la que tiene las propiedades de ocultar
   // la interfaz.
   desktopMenu.classList.add("isactive");
-
+  productInfo.classList.add("isactive");
   aside.classList.toggle("isactive");
 }
 
-// function toggleInfoProduct(){
+function toggleInfoProduct() {
+  productInfo.classList.remove("isactive");
+  aside.classList.add("isactive");
+  desktopMenu.classList.add("isactive");
+}
 
-// productInfo.classList.add("isactive");
-// }
-
+function closeInfoProduct() {
+  productInfo.classList.add("isactive");
+}
 const productList = [];
 productList.push({
   name: "Cafe mokka",
   price: 85,
   image: "../img/rsz_jonathan-pielmayer-hdtwglz8ldc-unsplash.jpg",
+  descripción:
+    "With its practical position, this bike also fulfills a decorative function, add your hall or workspace.",
 });
 productList.push({
   name: "Café capuccino",
   price: 120,
   image: "../img/rsz_mike-kenneally-zlwdjoktua8-unsplash.jpg",
+  descripción:
+    "With its practical position, this bike also fulfills a decorative function, add your hall or workspace.",
 });
 productList.push({
   name: "Expresso café",
   price: 110,
-  image:
-    "../img/blog-1.jpeg",
+  image: "../img/blog-1.jpeg",
 });
 productList.push({
   name: "Cafe mokka",
@@ -94,41 +105,98 @@ productList.push({
   image: "../img/blog-1.jpeg",
 });
 
-
+// Productos en el home
 for (const product of productList) {
   const productCard = document.createElement("div");
   productCard.classList.add("product-card");
 
-  const productImg = document.createElement('img');
-  productImg.setAttribute('src', product.image);
+  const productImg = document.createElement("img");
+  productImg.setAttribute("src", product.image);
+  productImg.addEventListener("click", toggleInfoProduct);
 
-  const productInfo = document.createElement('div');
-  productInfo.classList.add('product-info');
+  const productInfo = document.createElement("div");
+  productInfo.classList.add("product-info");
+  productInfo.addEventListener("click", toggleInfoProduct);
 
-  const productDetalle = document.createElement('div');
+  const productDetalle = document.createElement("div");
 
-  const productPrice = document.createElement('p');
-  productPrice.innerHTML = '$' + product.price;
-  const productName = document.createElement('p');
-  productName.innerHTML = product.name
+  const productPrice = document.createElement("p");
+  productPrice.innerHTML = "$" + product.price;
+  const productName = document.createElement("p");
+  productName.innerHTML = product.name;
 
   // Con 'appenChild', solo me deja insertar un elemento a la vez
   // productDetalle.appendChild(productPrice);
   // productDetalle.appendChild(productName);
 
   // Mientras con append puedo insertar más de uno
-  productDetalle.append(productPrice, productName)
+  productDetalle.append(productPrice, productName);
 
-  const productInfoFigure = document.createElement('figure');
-  const productImgCar = document.createElement('img');
+  const productInfoFigure = document.createElement("figure");
+  const productImgCar = document.createElement("img");
 
   productImgCar.setAttribute("src", "../img/bt_add_to_cart.svg");
 
-  productInfoFigure.appendChild(productImgCar)
+  productInfoFigure.appendChild(productImgCar);
 
-  productInfo.append(productDetalle, productInfoFigure)
+  productInfo.append(productDetalle, productInfoFigure);
 
-  productCard.append(productImg,productInfo)
+  productCard.append(productImg, productInfo);
 
   cardsContainer.appendChild(productCard);
+}
+
+const productListAside = [];
+productListAside.push({
+  name: "Cafe mokka",
+  price: 85,
+  image: "../img/rsz_jonathan-pielmayer-hdtwglz8ldc-unsplash.jpg",
+  descripción:
+    "With its practical position, this bike also fulfills a decorative function, add your hall or workspace.",
+});
+
+// Productos en el aside
+for (const product of productListAside) {
+  const productDetailClose = document.createElement("div");
+  productDetailClose.classList.add("product-detail-close");
+  productDetailClose.addEventListener('click', closeInfoProduct)
+  const iconoExit = document.createElement("i");
+  iconoExit.classList.add("close", 'fa-solid', 'fa-xmark');
+
+  const imgProduct = document.createElement("img");
+  imgProduct.classList.add("bike");
+  imgProduct.setAttribute("src", product.image);
+
+  const productInfo = document.createElement("div");
+  productInfo.classList.add("product-info");
+
+  //-----------------------------------------------------------------//
+  const productPrice = document.createElement("p");
+  productPrice.innerHTML = "$" + product.price;
+  const productName = document.createElement("p");
+  productName.innerHTML = product.name;
+  const productDescripcion = document.createElement("p");
+  productDescripcion.innerHTML = product.descripción;
+  const buttonAddCar = document.createElement("button");
+  buttonAddCar.append("Add to cart");
+  buttonAddCar.classList.add("primary-button", "add-to-cart-button");
+  productInfo.append(
+    productPrice,
+    productName,
+    productDescripcion,
+    buttonAddCar
+  );
+  //-----------------------------------------------------------------//
+
+  const imgAddCar = document.createElement("img");
+  imgAddCar.setAttribute("src", "../img/bt_add_to_cart.svg");
+
+  buttonAddCar.appendChild(imgAddCar);
+  //-----------------------------------------------------------------//
+
+  productDetailClose.appendChild(iconoExit);
+
+  //-----------------------------------------------------------------//
+
+  productInfoDetail.append(productDetailClose, imgProduct, productInfo);
 }
